@@ -1,7 +1,7 @@
 var api_id = "XLPLQ9-WVTJ4GL8WU";
 
 var link = "http://api.wolframalpha.com/v2/query?appid=" + api_id;
-
+// https://www.youtube.com/watch?v=uxf0--uiX0I
 
 const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
 async function getISS(){
