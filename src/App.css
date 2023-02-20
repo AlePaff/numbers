@@ -1,0 +1,22 @@
+#root {
+  max-width: 1480px;
+  margin: 0 auto;
+  /* padding: 2rem; */
+  /* text-align: center; */
+  /* background-color: #68ce2ed8; */
+}
+
+/* tener todo el contenido en una misma linea */
+.same-line{
+  white-space: nowrap;
+}
+.same-line *{ 
+  display: inline;
+}
+
+/* para que no se muestren las flechas de los input  */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
