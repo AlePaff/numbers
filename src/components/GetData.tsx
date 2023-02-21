@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 
 
 //from https://reactjs.org/docs/faq-ajax.html
-function GetData(input_numero) {
+function GetData(props: any) {
   var api_id = "XLPLQ9-WVTJ4GL8WU";
   var link = "http://api.wolframalpha.com/v2/query?appid=" + api_id;
 
-  var formas_cerradas = 'https://api.wolframalpha.com/v2/query?input=closed+forms+of+' + input_numero + '&format=plaintext&output=JSON&appid=' + api_id;
-
+  
+  
+  
+  var formas_cerradas = 'https://api.wolframalpha.com/v2/query?input=closed+forms+of+' + props.input_numero + '&format=plaintext&output=JSON&appid=' + api_id;
+  
+  console.log(formas_cerradas)
 
 
   const [error, setError] = useState(null);
@@ -32,6 +36,8 @@ function GetData(input_numero) {
       )
   }, [])
 
+  console.log(formas_cerradas)
+
   //chequeos en base al response de la api
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -40,9 +46,10 @@ function GetData(input_numero) {
   } else {
     return (
       <div>
-        {/* {console.log(items[0].name)} */}
+        
+        {console.log(items.queryresult)}
         {/* {items.queryresult.pods[0].title} */}
-        {items.queryresult.pods[0].title}
+        
       </div>
     );
   }

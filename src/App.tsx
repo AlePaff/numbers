@@ -2,20 +2,16 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import GetData from './components/GetData'
+import { useForm } from "react-hook-form";
 
 
-
+function handleClick(){
+  alert("hola");
+}
 
 function App() {
-  // https://www.kindacode.com/article/react-typescript-handling-form-onsubmit-event/
-  const [term, setTerm] = useState('');       // State for the search term
-  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {     // Form submit function, returns a void
-    event.preventDefault();     // Preventing the page from reloading
-
-    // Do something 
-    // alert(term);
-    
-  }
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [data, setData] = useState({});
 
   return (
     <>
@@ -24,18 +20,38 @@ function App() {
         <p className="text-center">Find a pattern in a number you like, or when its used or expresion similars to it</p>
       </div>
 
-      {/* https://www.kindacode.com/article/react-typescript-handling-form-onsubmit-event/ */}
       <div className="container grid place-content-center">
-        <form onSubmit={submitForm} className="same-line">
-          <input
-            type="text"
-            className="w-80 mx-auto border-2 rounded-l-md p-2 my-5 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-            value={term}
-            onChange={(e) => setTerm(e.target.value)}
-            placeholder='Write here a number (eg. 16.09)' />
 
-          <button type="submit" className="bg-purple-600 text-white rounded-r-md px-2 h-12">=</button>
+        <form onSubmit={handleSubmit((data) => setData(data))}>
+          {/*
+              setData toma el json que devuelve handleSubmit y lo guarda en el state cuando se hace submit
+              register es una funcion que guarda el valor del input en el state
+          */}
+          <input {...register(
+            "input_user",
+            // { pattern: /^[0-9]+.+$/i }
+          )}
+            // type="number"
+            placeholder="Write here a number (eg. 16.09)"
+            className="w-80 mx-auto border-2 rounded-l-md p-2 my-5 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
+          {/* {errors?.input_user?.type === "pattern" && (
+            <p>Alphabetical characters only</p>
+          )} */}
+          <button type="submit" className="bg-purple-600 text-white rounded-r-md px-3 h-12">=</button>
         </form>
+
+        {/* cuando se ejecute el submit recien ahi usa GetData */}
+        
+        {
+          // console.log(data.input_user)
+          
+          data.input_user && <GetData input_numero={data.input_user} />
+        }
+
+        
+
+
+
 
         {/* bullet points */}
         <ul className="list-disc list-inside">
