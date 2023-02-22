@@ -5,9 +5,6 @@ import React, { useState, useEffect } from 'react';
 function GetData(props: any) {
   var api_id = "XLPLQ9-WVTJ4GL8WU";
   var link = "http://api.wolframalpha.com/v2/query?appid=" + api_id;
-
-  
-  
   
   var formas_cerradas = 'https://api.wolframalpha.com/v2/query?input=closed+forms+of+' + props.input_numero + '&format=plaintext&output=JSON&appid=' + api_id;
   

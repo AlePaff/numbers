@@ -5,13 +5,17 @@ import GetData from './components/GetData'
 import { useForm } from "react-hook-form";
 
 
-function handleClick(){
+function handleClick() {
   alert("hola");
 }
 
 function App() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [data, setData] = useState({});
+
+  useEffect(() => {
+    console.log(data.input_user)
+  }, [data.input_user])
 
   return (
     <>
@@ -41,14 +45,10 @@ function App() {
         </form>
 
         {/* cuando se ejecute el submit recien ahi usa GetData */}
-        
-        {
-          // console.log(data.input_user)
-          
-          data.input_user && <GetData input_numero={data.input_user} />
-        }
+        {data.input_user && <GetData input_numero={data.input_user} />}
 
-        
+
+
 
 
 
