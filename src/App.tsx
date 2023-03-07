@@ -31,7 +31,7 @@ function Wolframe() {
   const images = "&format=image"    //sin necesidad de latex ni nada
   const api_id = "XLPLQ9-WVTJ4GL8WU"
   const roman = "&podstate=RomanNumerals__Other+historical+numerals"
-  const calendarios = "&podstate=SingleDateFormats__More+formats/calendars"
+  const formatos = "&podstate=SingleDateFormats__More+formats/calendars"
   const comparationNumber = 5000000;
 
 
@@ -52,15 +52,13 @@ function Wolframe() {
     console.log("pods ", wolframe_output?.pods)
     const numero = parseFloat(inputValue)
 
-
-
     const propsSubpods = getSubpods(wolframe_output, "Property")
     const primesSubpods = getSubpods(wolframe_output, "PrimeFactorization")
     const comparitionSubpods = getSubpods(wolframe_output, "Comparison")
     const closedFormsSubpods = getSubpods(wolframe_output, "PossibleClosedForm")
-    const calendarSubpods = getSubpods(wolframe_output, "RomanNumerals")
-    const dateSubpods = getSubpods(wolframe_output, "SingleDateFormats")
-    const timeSubpods = getSubpods(wolframe_output, "DifferenceConversions")
+    const formatosSubpods = getSubpods(wolframe_output, "RomanNumerals")
+    const calendarSubpods = getSubpods(wolframe_output, "SingleDateFormats")
+    const timerSubpods = getSubpods(wolframe_output, "DifferenceConversions")
 
 
     return (
@@ -72,7 +70,7 @@ function Wolframe() {
         {primesSubpods.map((image, index) => <img key={index} src={image.src} alt={image.alt} />)}
 
         <h2>Calendarios</h2>
-        {calendarSubpods.map((image, index) => <img key={index} src={image.src} alt={image.alt} />)}
+        {formatosSubpods.map((image, index) => <img key={index} src={image.src} alt={image.alt} />)}
 
         <h2>Comparacion</h2>
         {comparitionSubpods.map((image, index) => <img key={index} src={image.src} alt={image.alt} />)}
@@ -81,10 +79,10 @@ function Wolframe() {
         {closedFormsSubpods.map((image, index) => <img key={index} src={image.src} alt={image.alt} />)}
 
         <h2>Fecha</h2>
-        {dateSubpods.map((image, index) => <img key={index} src={image.src} alt={image.alt} />)}
+        {calendarSubpods.map((image, index) => <img key={index} src={image.src} alt={image.alt} />)}
 
         <h2>Hora</h2>
-        {timeSubpods.map((image, index) => <img key={index} src={image.src} alt={image.alt} />)}
+        {timerSubpods.map((image, index) => <img key={index} src={image.src} alt={image.alt} />)}
 
       </div>
     )
@@ -95,7 +93,7 @@ function Wolframe() {
 
 
   const query = useQuery('wolfram', async () => {
-    let api = `https://api.wolframalpha.com/v2/query?input=${inputValue}&output=JSON&appid=${api_id}${calendarios}${more_closed_forms}${roman}`
+    let api = `https://api.wolframalpha.com/v2/query?input=${inputValue}&output=JSON&appid=${api_id}${formatos}${more_closed_forms}${roman}`
     const response = await fetch(api);
     const data = await response.json();     //await se usa para esperar a que la promesa se resuelva
     console.log("los datos de la query fueron ", data.queryresult)
