@@ -40,7 +40,8 @@ function WolframInput() {
         <div className="flex flex-no-wrap items-center sm:w-3/4 mx-auto">
           <input
             type="text"
-            className="flex-grow border-2 rounded-l-md p-2 my-5 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            className="flex-grow border-2 rounded-l-md p-2 my-5 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent placeholder:italic placeholder:text-slate-400"
+            placeholder="Write here a number (eg. 16.09)"
             value={inputValue}
             onChange={handleChange}
           />
