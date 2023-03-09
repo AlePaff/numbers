@@ -65,7 +65,9 @@ function Properties({ wolframe_output, input_value, onSubpodData }) {
     const comparitionSubpods = getSubpods(wolframe_output, "Comparison")
     const formatosSubpods = getSubpods(wolframe_output, "RomanNumerals")
 
-    if (propsSubpods.length === 0 && primesSubpods.length === 0 && comparitionSubpods.length === 0 && formatosSubpods.length === 0) return (<></>)
+    if (propsSubpods.length === 0 && primesSubpods.length === 0 && comparitionSubpods.length === 0 && formatosSubpods.length === 0) return (null);
+
+    // onSubpodData(true)
 
     return (
         <>
@@ -84,7 +86,9 @@ function DatesAndMore({ wolframe_output, input_value, onSubpodData }) {
     const calendarSubpods = getSubpods(wolframe_output, "SingleDateFormats")
     const timerSubpods = getSubpods(wolframe_output, "DifferenceConversions")
 
-    if (calendarSubpods.length === 0 && timerSubpods.length === 0) return (<></>)
+    if (calendarSubpods.length === 0 && timerSubpods.length === 0) return null;
+
+    // onSubpodData(true)
 
     return (
         <>
@@ -103,8 +107,7 @@ function ParseQuery({ wolframe_output, input_value }) {
     }
 
     return (
-        <div>
-
+        <>
             <div className="grid"> {/* className="list-disc list-inside" */}
                 <ClosedForms values_wolf={wolframe_output} value_input={input_value} onSubpodData={onSubpodData}></ClosedForms>
 
@@ -113,10 +116,8 @@ function ParseQuery({ wolframe_output, input_value }) {
                 <DatesAndMore wolframe_output={wolframe_output} input_value={input_value} onSubpodData={onSubpodData}></DatesAndMore>
             </div >
 
-            {!dataFound && <p className="text-center text-gray-500 my-2">No data found for {input_value}.</p>}
-
-
-        </div>
+            {/* {!dataFound && <p className="text-center text-gray-500 my-2">No data found for {input_value}.</p>} */}
+        </>
     )
 }
 
