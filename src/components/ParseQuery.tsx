@@ -1,5 +1,6 @@
 import ClosedForms from './ClosedForms'
 // import Properties from './Properties'
+import { useState, useEffect } from 'react';
 
 
 //por ejemplo 4356 -> 4 + 3 + 5 + 8 = 20 -> 2 + 0 = 2
@@ -44,9 +45,9 @@ const checkSubpods = (name, subpod_array) => {
                 <li>{name}</li>
                 <div className="ml-10">
                     {subpod_array.map(image =>
-
-                        <div className="flex">
-                            <img className="my-2" key={image.alt} src={image.src} alt={image.alt} />
+                        <div className="flex" key={image.src + image.alt}>
+                            <img className="my-2" src={image.src} alt={image.alt} />
+                            {/* la key de esa forma queda bastante unica */}
                         </div>
                     )}
                 </div>
@@ -65,11 +66,9 @@ function Properties({ wolframe_output, input_value, onSubpodData }) {
     const formatosSubpods = getSubpods(wolframe_output, "RomanNumerals")
 
     if (propsSubpods.length === 0 && primesSubpods.length === 0 && comparitionSubpods.length === 0 && formatosSubpods.length === 0) return (<></>)
-    onSubpodData()
 
     return (
         <>
-
             {checkSubpods("Properties", propsSubpods)}
             {checkSubpods("Prime Factorization", primesSubpods)}
             {checkSubpods("Comparison", comparitionSubpods)}
@@ -80,13 +79,12 @@ function Properties({ wolframe_output, input_value, onSubpodData }) {
 }
 
 
-function DatesAndMore({ wolframe_output, input_value, onSubpodData }) {    
+function DatesAndMore({ wolframe_output, input_value, onSubpodData }) {
 
     const calendarSubpods = getSubpods(wolframe_output, "SingleDateFormats")
     const timerSubpods = getSubpods(wolframe_output, "DifferenceConversions")
 
     if (calendarSubpods.length === 0 && timerSubpods.length === 0) return (<></>)
-    onSubpodData()
 
     return (
         <>
@@ -98,16 +96,15 @@ function DatesAndMore({ wolframe_output, input_value, onSubpodData }) {
 
 
 function ParseQuery({ wolframe_output, input_value }) {
-    let dataFound = false;
+    const [dataFound, setDataFound] = useState(false)
 
-    const onSubpodData = () => {
-        console.log("primero", dataFound)
-        dataFound = true;
-        console.log("final", dataFound)
+    const onSubpodData = (hasData) => {
+        setDataFound(hasData)
     }
 
     return (
         <div>
+
             <div className="grid"> {/* className="list-disc list-inside" */}
                 <ClosedForms values_wolf={wolframe_output} value_input={input_value} onSubpodData={onSubpodData}></ClosedForms>
 
@@ -118,7 +115,6 @@ function ParseQuery({ wolframe_output, input_value }) {
 
             {!dataFound && <p className="text-center text-gray-500 my-2">No data found for {input_value}.</p>}
 
-            
 
         </div>
     )

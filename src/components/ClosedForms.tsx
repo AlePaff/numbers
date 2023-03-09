@@ -18,13 +18,11 @@ function obtenerError(plain_text, value_input) {
     return (error + "%")
 }
 
-function ClosedForms({ values_wolf, value_input, onSubpodData}) {
+function ClosedForms({ values_wolf, value_input, onSubpodData }) {
     let closedFormsSubpods = getSubpods(values_wolf, "PossibleClosedForm")
 
-    if (closedFormsSubpods.length === 0) return (<></>)
-    onSubpodData()
-
-
+    if (closedFormsSubpods.length === 0) {return (<></>)}
+    
     let closedFormsSubpodsImg = closedFormsSubpods.map(subpod => subpod.img);
 
     const closedFormsSubpodsInfo = closedFormsSubpods.map(subpod => subpod.infos)
@@ -41,8 +39,8 @@ function ClosedForms({ values_wolf, value_input, onSubpodData}) {
             <div className="border-2 m-1 px-3 py-1 rounded-md sm:grid-cols-[3fr_2fr] sm:grid-rows-[minmax(30px,_auto)] sm:grid">
                 <div className="row-start-1 row-end-3">
                     {closedFormsSubpodsImg.map((image) =>
-                        <div className="grid grid-cols-[7fr_1fr]">
-                            <img className="my-2" src={image.src} alt={image.alt} key={image.alt} />
+                        <div className="grid grid-cols-[7fr_1fr]" key={image.alt}>
+                            <img className="my-2" src={image.src} alt={image.alt} />
                             {showErrors && <div className="self-center justify-self-end">{obtenerError(image.title, value_input)}</div>}
                         </div>
                     )}
@@ -56,8 +54,8 @@ function ClosedForms({ values_wolf, value_input, onSubpodData}) {
                 {/* info y links */}
                 <div className="justify-self-end ">
                     {closedFormsSubpodsInfo.map(info =>
-                        <a href={info.links[1].url} target="_blank">
-                            <img className="my-2 cursor-pointer" key={info.img.alt} src={info.img.src} alt={info.img.alt} title="Click the image for more info" />
+                        <a href={info?.links[1]?.url} target="_blank" key={info?.img?.alt}>
+                            <img className="my-2 cursor-pointer" src={info.img.src} alt={info.img.alt} title="Click the image for more info" />
                         </a>
                     )}
                 </div>
