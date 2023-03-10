@@ -91,7 +91,7 @@ function WolframInput() {
               <input
                 type="text"
                 className="flex-grow border-2 rounded-l-md p-2 my-5 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent placeholder:italic placeholder:text-slate-400"
-                placeholder="Write here a number (eg. 16.09)"
+                placeholder="Write a number (eg. 16.09)"
                 value={inputValue}
                 onChange={handleChange}
               />
@@ -123,16 +123,24 @@ function WolframInput() {
           </div>
 
           :
+          <div>
+            <div className="flex justify-center">
+              <input
+                type="number"
+                className="border-2 rounded p-2 my-5 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent placeholder:italic placeholder:text-slate-400"
+                placeholder="Write some digits"
+                value={digitFinder}
+                onChange={handleDigitFinderChange}
+              />
+            </div>
+            {digitFinder &&
+              <div className='border-2 rounded '>
+                e <br></br>
+                pi
 
-          <div className="sm:container mx-2">
-            <input
-              type="text"
-              className="flex-grow border-2 rounded-l-md p-2 my-5 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent placeholder:italic placeholder:text-slate-400"
-              placeholder="Write here a digit"
-              value={digitFinder}
-              onChange={handleDigitFinderChange}
-            />
-            <div>{digitFinder}</div>
+                {digitFinder}
+              </div>
+            }
           </div>
         }
 
