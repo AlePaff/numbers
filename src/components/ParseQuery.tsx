@@ -1,26 +1,6 @@
 import ClosedForms from './ClosedForms'
 // import Properties from './Properties'
-import { useState, useEffect } from 'react';
-
-
-//por ejemplo 4356 -> 4 + 3 + 5 + 8 = 20 -> 2 + 0 = 2
-function raizDigital(numero_entero) {
-    const numero = numero_entero.toString();
-    if (numero.length === 1) {
-        return numero;
-    }
-    const suma_digitos = numero.split('').reduce((a, b) => parseInt(a) + parseInt(b));
-    console.log(suma_digitos)
-    return raizDigital(suma_digitos);
-}
-
-// pongo 41 y me dice que en pi=3.1415 se encuentra en la posición 1
-function buscarDigitosDe(numero, constante) {
-    const numeroString = numero.toString();
-    const constanteString = constante.toString();
-    const posicion = constanteString.indexOf(numeroString);
-    return posicion;
-}
+import { useState } from 'react';
 
 
 
@@ -60,10 +40,25 @@ const checkSubpods = (name, subpod_array) => {
 function Properties({ wolframe_output, input_value, onSubpodData }) {
     const numero = parseFloat(input_value)
 
+    //por ejemplo 4356 -> 4 + 3 + 5 + 8 = 20 -> 2 + 0 = 2
+    function raizDigital(numero_entero) {
+        const numero_str = numero_entero.toString();
+        
+        if (!(Number as any).isInteger(numero_entero)) return (null);      //si no es entero
+
+        if (numero_str.length === 1) {          //si es un solo digito
+            return numero_str;
+        }
+        const suma_digitos = numero_str.split('').reduce((a, b) => parseInt(a) + parseInt(b));
+        // console.log(suma_digitos)
+        return raizDigital(suma_digitos);
+    }
+
     const propsSubpods = getSubpods(wolframe_output, "Property")
     const primesSubpods = getSubpods(wolframe_output, "PrimeFactorization")
     const comparitionSubpods = getSubpods(wolframe_output, "Comparison")
     const formatosSubpods = getSubpods(wolframe_output, "RomanNumerals")
+    const raizDigitalResult = raizDigital(numero)
 
     if (propsSubpods.length === 0 && primesSubpods.length === 0 && comparitionSubpods.length === 0 && formatosSubpods.length === 0) return (null);
 
@@ -75,6 +70,11 @@ function Properties({ wolframe_output, input_value, onSubpodData }) {
             {checkSubpods("Prime Factorization", primesSubpods)}
             {checkSubpods("Comparison", comparitionSubpods)}
             {checkSubpods("Writen as other numerals", formatosSubpods)}
+            <div className="border-2 my-1 px-3 py-1 rounded-md">
+                <h2>Digital Root</h2>
+                <p className="ml-10">The digital root of {numero} is {raizDigitalResult}</p>
+            </div>
+
         </>
     )
 
@@ -85,8 +85,9 @@ function DatesAndMore({ wolframe_output, input_value, onSubpodData }) {
 
     const calendarSubpods = getSubpods(wolframe_output, "SingleDateFormats")
     const timerSubpods = getSubpods(wolframe_output, "DifferenceConversions")
+    const timerDifSubpods = getSubpods(wolframe_output, "TimeDifferenceFromNow (time)")
 
-    if (calendarSubpods.length === 0 && timerSubpods.length === 0) return null;
+    if (calendarSubpods.length === 0 && timerSubpods.length === 0 && timerDifSubpods.length === 0) return (null);
 
     // onSubpodData(true)
 
@@ -94,6 +95,7 @@ function DatesAndMore({ wolframe_output, input_value, onSubpodData }) {
         <>
             {checkSubpods("Single Date Formats", calendarSubpods)}
             {checkSubpods("Difference Conversions", timerSubpods)}
+            {checkSubpods("TimeDifferenceFromNow (time)", timerDifSubpods)}
         </>
     )
 }
