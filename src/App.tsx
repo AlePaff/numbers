@@ -1,7 +1,7 @@
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from "react-query/devtools";
-import WolframInput from './components/WolframInput';
+import NumberQuery from './components/NumberQuery';
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     // para permitir usar el hook useQuery globalmente (en cualquier componente)
     <QueryClientProvider client={new QueryClient()}>
       <div className="max-w-screen-lg mx-auto p-1">
-        <Wolframe />
+        <FindANumber />
       </div>
       {/* <ReactQueryDevtools /> */}
     </QueryClientProvider>
@@ -18,7 +18,7 @@ function App() {
 
 
 
-function Wolframe() {
+function FindANumber() {
 
   return (
     <>
@@ -29,7 +29,7 @@ function Wolframe() {
       </div>
       <p className="text-center text-gray-500 my-2">For example try for the decimal "16.09" or the integer "444" or the date "1/2/1888"</p>
 
-      <WolframInput></WolframInput>
+      <NumberQuery></NumberQuery>
     </>
   );
 }
