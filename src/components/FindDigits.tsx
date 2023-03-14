@@ -84,6 +84,7 @@ const FindDigits = () => {
     const handleDigitChange = async (event) => {
         setDigit(event.target.value);
 
+        // @ts-ignore
         const [displayPi, posPi, ocurrPi] = await buscarInfoDe(event.target.value, "pi");
         setPiPosition(posPi);
         setPiDisplay(displayPi);

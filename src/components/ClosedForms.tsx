@@ -2,6 +2,8 @@ import { useState } from "react"
 
 //no hace falta el chequeo de si es entero, decimal o fecha, ya que filter
 //si no lo encuentra devuelve un array vacío, y map y flatMap sobre un array vacío no generan problemas
+
+
 const getSubpods = (wolframe_query, pod_id) => {
     let result = wolframe_query?.pods?.filter(p => p.id === pod_id).flatMap(pod => pod.subpods)
     return result

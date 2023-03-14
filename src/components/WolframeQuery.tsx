@@ -82,7 +82,10 @@ const WolframeQuery = () => {
             </div>
           </div>}
           {query.isSuccess && !(query.isLoading || query.isFetching) && <div>{query.data}</div>}
-          {query.isError && <div>Error: {query.error.message}</div>}
+          
+          {
+          // @ts-ignore
+          query.isError && <div>Error: {query.error.message}</div>}
   
         </div>
       </div>
