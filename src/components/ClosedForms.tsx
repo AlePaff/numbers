@@ -48,7 +48,7 @@ function ClosedForms({ values_wolf, value_input, onSubpodData }) {
                 </div>
 
                 {/* boton ocultar mostrar errores */}
-                <button onClick={() => setShowErrors(!showErrors)} className="self-start justify-self-end bg-red-100 p-1 rounded">
+                <button onClick={() => setShowErrors(!showErrors)} className="self-start justify-self-end p-1 rounded bg-red-100 hover:bg-red-200">
                     {showErrors ? "Hide error aproximation" : "Show error aproximation"}
                 </button>
 

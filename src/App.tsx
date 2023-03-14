@@ -8,7 +8,7 @@ function App() {
   return (
     // para permitir usar el hook useQuery globalmente (en cualquier componente)
     <QueryClientProvider client={new QueryClient()}>
-      <div className="max-w-screen-lg mx-auto p-1 bg-[#f6f3ed]">
+      <div className="max-w-screen-lg mx-auto p-1 bg-[#f6f3ed] pb-36">
         <FindANumber />
       </div>
       {/* <ReactQueryDevtools /> */}
