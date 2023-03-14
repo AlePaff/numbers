@@ -37,7 +37,7 @@ function ClosedForms({ values_wolf, value_input, onSubpodData }) {
         <>
             {/* imagen y texto */}
             <h2>Closed Forms</h2>
-            <div className="border-2 m-1 px-3 py-1 rounded-md sm:grid-cols-[3fr_2fr] sm:grid-rows-[minmax(30px,_auto)] sm:grid">
+            <div className="border-2 m-1 px-3 py-1 rounded-md bg-white sm:grid-cols-[3fr_2fr] sm:grid-rows-[minmax(30px,_auto)] sm:grid">
                 <div className="row-start-1 row-end-3">
                     {closedFormsSubpodsImg.map((image) =>
                         <div className="grid grid-cols-[7fr_1fr]" key={image.alt}>

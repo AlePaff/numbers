@@ -105,49 +105,49 @@ const FindDigits = () => {
             <div className="flex justify-center">
                 <input
                     type="number"
-                    className="border-2 rounded p-2 my-5 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent placeholder:italic placeholder:text-slate-400"
+                    className="border-2 rounded-md p-2 my-5 focus:outline-none focus:ring-2 focus:ring-[#e5cf9b] border-[#e6decd] focus:border-transparent placeholder:italic placeholder:text-slate-400"
                     placeholder="Write some digits"
                     value={digit}
                     onChange={handleDigitChange}
                 />
             </div>
             <div className="flex justify-center">
-                <table className="table-auto border-2 rounded">
+                <table className="table-auto border-2 border-[#e6decd]">
                     <thead>
-                        <tr>
-                            <th className="sm:px-4 sm:py-2 border border-slate-300">Number</th>
-                            <th className="sm:px-4 sm:py-2 border border-slate-300">Pattern input</th>
-                            <th className="sm:px-4 sm:py-2 border border-slate-300">At Position</th>
-                            <th className="sm:px-4 sm:py-2 border border-slate-300">Ocurrences (in the first 1 millon digits)</th>
+                        <tr className="bg-[#f1ede3]">
+                            <th className="sm:px-4 sm:py-2 border border-[#e6decd]">Number</th>
+                            <th className="sm:px-4 sm:py-2 border border-[#e6decd]">Pattern input</th>
+                            <th className="sm:px-4 sm:py-2 border border-[#e6decd]">At Position</th>
+                            <th className="sm:px-4 sm:py-2 border border-[#e6decd]">Ocurrences (in the first 1 millon digits)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td className="text-center text-2xl">{constantes["pi"].label}</td>
+                            <td className="text-center pb-2 text-2xl">{constantes["pi"].label}</td>
                             {
-                                piDisplay[0] === null ? <td className="text-center text-2xl">-</td> :
-                                    <td className="text-center text-2xl">{piDisplay[0]}<span className="font-bold text-3xl">{digit}</span>{piDisplay[1]}</td>
+                                piDisplay[0] === null ? <td className="text-center pb-2 text-2xl">-</td> :
+                                    <td className="text-center pb-2 text-2xl">{piDisplay[0]}<span className="font-bold text-3xl">{digit}</span>{piDisplay[1]}</td>
                             }
-                            <td className="text-center text-2xl">{piPosition ?? "-"}</td>
-                            <td className="text-center text-2xl">{piOcurrences}</td>
+                            <td className="text-center pb-2 text-2xl">{piPosition ?? "-"}</td>
+                            <td className="text-center pb-2 text-2xl">{piOcurrences}</td>
                         </tr>
                         <tr>
-                            <td className="text-center font-bold-xl text-2xl">{constantes["e"].label}</td>
+                            <td className="text-center pb-2 font-bold-xl text-2xl">{constantes["e"].label}</td>
                             {
-                                eDisplay[0] === null ? <td className="text-center text-2xl">-</td> :
-                                    <td className="text-center text-2xl">{eDisplay[0]}<span className="font-bold text-3xl">{digit}</span>{eDisplay[1]}</td>
+                                eDisplay[0] === null ? <td className="text-center pb-2 text-2xl">-</td> :
+                                    <td className="text-center pb-2 text-2xl">{eDisplay[0]}<span className="font-bold text-3xl">{digit}</span>{eDisplay[1]}</td>
                             }
-                            <td className="text-center text-2xl">{ePosition ?? "-"}</td>
-                            <td className="text-center text-2xl">{eOcurrences}</td>
+                            <td className="text-center pb-2 text-2xl">{ePosition ?? "-"}</td>
+                            <td className="text-center pb-2 text-2xl">{eOcurrences}</td>
                         </tr>
                         <tr>
-                            <td className="text-center font-bold-xl text-2xl">{constantes["phi"].label}</td>
+                            <td className="text-center pb-2 font-bold-xl text-2xl">{constantes["phi"].label}</td>
                             {
-                                phiDisplay[0] === null ? <td className="text-center text-2xl">-</td> :
-                                    <td className="text-center text-2xl">{phiDisplay[0]}<span className="font-bold text-3xl">{digit}</span>{phiDisplay[1]}</td>
+                                phiDisplay[0] === null ? <td className="text-center pb-2 text-2xl">-</td> :
+                                    <td className="text-center pb-2 text-2xl">{phiDisplay[0]}<span className="font-bold text-3xl">{digit}</span>{phiDisplay[1]}</td>
                             }
-                            <td className="text-center text-2xl">{phiPosition ?? "-"}</td>
-                            <td className="text-center text-2xl">{phiOcurrences}</td>
+                            <td className="text-center pb-2 text-2xl">{phiPosition ?? "-"}</td>
+                            <td className="text-center pb-2 text-2xl">{phiOcurrences}</td>
                         </tr>
                     </tbody>
                 </table>

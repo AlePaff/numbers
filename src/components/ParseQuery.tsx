@@ -21,7 +21,7 @@ const checkSubpods = (name, subpod_array) => {
 
     return (
         <>
-            <div className="border-2 my-1 px-3 py-1 rounded-md">
+            <div className="border-2 my-1 px-3 py-1 rounded-md bg-white">
                 <li>{name}</li>
                 <div className="ml-10">
                     {subpod_array.map(image =>
@@ -70,7 +70,7 @@ function Properties({ wolframe_output, input_value, onSubpodData }) {
             {checkSubpods("Prime Factorization", primesSubpods)}
             {checkSubpods("Comparison", comparitionSubpods)}
             {checkSubpods("Writen as other numerals", formatosSubpods)}
-            <div className="border-2 my-1 px-3 py-1 rounded-md">
+            <div className="border-2 my-1 px-3 py-1 rounded-md bg-white">
                 <h2>Digital Root</h2>
                 <p className="ml-10">The digital root of {numero} is {raizDigitalResult}</p>
             </div>
