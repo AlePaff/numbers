@@ -23,9 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 
-#archivos extra
-package-lock.json
-package.json
-postcss.config.cjs
-vite.config.js
-tsconfig.json
