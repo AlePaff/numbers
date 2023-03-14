@@ -54,11 +54,15 @@ function ClosedForms({ values_wolf, value_input, onSubpodData }) {
 
                 {/* info y links */}
                 <div className="justify-self-end ">
-                    {closedFormsSubpodsInfo.map(info =>
-                        <a href={info?.links[1]?.url} target="_blank" key={info?.img?.alt}>
-                            <img className="my-2 cursor-pointer" src={info.img.src} alt={info.img.alt} title="Click the image for more info" />
-                        </a>
-                    )}
+                    {closedFormsSubpodsInfo.map(info => {
+                        if ('links' in info && info.links.length >= 2) {
+                            return (
+                                <a href={info.links[1].url} target="_blank" key={info.img?.alt}>
+                                    <img className="my-2 cursor-pointer" src={info.img.src} alt={info.img.alt} title="Click the image for more info" />
+                                </a>
+                            );
+                        }
+                    })}
                 </div>
             </div>
         </>
