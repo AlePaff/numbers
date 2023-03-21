@@ -45,8 +45,8 @@ async function buscarInfoDe(search, constName) {
     };
 
     if (!(constName in fileNames)) return null;
-
-    const response = await fetch(`src/assets/${fileNames[constName]}`);
+    
+    const response = await fetch(import.meta.env.BASE_URL + `assets/${fileNames[constName]}`);
     const text = await response.text();
     const pos = text.indexOf(search);
 
