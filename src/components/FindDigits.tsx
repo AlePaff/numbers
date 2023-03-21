@@ -113,7 +113,7 @@ const FindDigits = () => {
                     onChange={handleDigitChange}
                 />
             </div>
-            <div className="flex justify-center">
+            <div className="flex sm:justify-center overflow-auto">
                 <table className="table-auto border-2 border-[#e6decd]">
                     <thead>
                         <tr className="bg-[#f1ede3]">
