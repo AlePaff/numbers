@@ -16,9 +16,7 @@ const WolframeQuery = () => {
       let api = `https://api.wolframalpha.com/v2/query?input=${inputValue}&output=JSON&appid=${api_id}${formatos}${more_closed_forms}${roman}`
       const response = await fetch(api);
       const data = await response.json();     //await se usa para esperar a que la promesa se resuelva
-      console.log("los datos de la query fueron ", data.queryresult)
-      console.log("link query ", api)
-  
+        
       const resultados = <ParseQuery wolframe_output={data.queryresult} input_value={inputValue} />
       return resultados;
     }, {
