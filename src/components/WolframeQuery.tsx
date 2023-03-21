@@ -14,7 +14,10 @@ const WolframeQuery = () => {
   
     const query = useQuery('wolfram', async () => {
       let api = `https://api.wolframalpha.com/v2/query?input=${inputValue}&output=JSON&appid=${api_id}${formatos}${more_closed_forms}${roman}`
-      const response = await fetch(api);
+      //permitir politicas de CORS
+      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+      const response = await fetch(proxyUrl + api);
+      
       const data = await response.json();     //await se usa para esperar a que la promesa se resuelva
         
       const resultados = <ParseQuery wolframe_output={data.queryresult} input_value={inputValue} />
