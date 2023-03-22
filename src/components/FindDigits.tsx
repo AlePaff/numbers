@@ -105,10 +105,12 @@ const FindDigits = () => {
 
         const newConstants = {};
         for (const constante of constKeys) {
+            // @ts-ignore
             const [display, position, ocurrences] = await buscarInfoDe(event.target.value, constante);
             newConstants[constante] = { display, position, ocurrences };
         }
 
+        // @ts-ignore
         setConstants(newConstants);
     };
 
