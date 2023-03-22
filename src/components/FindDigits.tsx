@@ -45,7 +45,7 @@ async function buscarInfoDe(search, constName) {
     };
 
     if (!(constName in fileNames)) return null;
-    
+
     //para que pueda leer assets en produccion
     const response = await fetch(import.meta.env.BASE_URL + `assets/${fileNames[constName]}`);
     const text = await response.text();
@@ -59,47 +59,57 @@ async function buscarInfoDe(search, constName) {
 
 }
 
+function TableItem({ value, label, display, position, ocurrences }) {
+    return (
+      <tr>
+        <td className="text-center pb-2 font-bold-xl text-2xl">{label}</td>
+        
+        {display[0] === null ? (
+          <td className="text-center pb-2 text-2xl">-</td>
+        ) : (
+          <td className="text-center pb-2 text-2xl">
+            {display[0]}
+            <span className="font-bold text-3xl">{value}</span>
+            {display[1]}
+          </td>
+        )}
+        
+        <td className="text-center pb-2 text-2xl">{position ?? "-"}</td>
+        <td className="text-center pb-2 text-2xl">{ocurrences}</td>
+      </tr>
+    );
+  }
+
 
 
 const FindDigits = () => {
     const [digit, setDigit] = useState("");
 
-    const [piPosition, setPiPosition] = useState(null);
-    const [piDisplay, setPiDisplay] = useState([null, null]);
-    const [piOcurrences, setPiOcurrences] = useState(null);
-
-    const [ePosition, setEPosition] = useState(null);
-    const [eDisplay, setEDisplay] = useState([null, null]);
-    const [eOcurrences, setEOcurrences] = useState(null);
-
-    const [phiPosition, setPhiPosition] = useState(null);
-    const [phiDisplay, setPhiDisplay] = useState([null, null]);
-    const [phiOcurrences, setPhiOcurrences] = useState(null);
+    const [constants, setConstants] = useState({
+        pi: { display: [null, null], position: null, ocurrences: null },
+        e: { display: [null, null], position: null, ocurrences: null },
+        phi: { display: [null, null], position: null, ocurrences: null }
+    });
 
     const constantes = {
-        pi: { name: "pi", label: "π" },
-        e: { name: "e", label: "e" },
-        phi: { name: "phi", label: "φ" },
+        "pi": "π",
+        "e": "e",
+        "phi": "φ",
     }
 
     const handleDigitChange = async (event) => {
         setDigit(event.target.value);
 
-        // @ts-ignore
-        const [displayPi, posPi, ocurrPi] = await buscarInfoDe(event.target.value, "pi");
-        setPiPosition(posPi);
-        setPiDisplay(displayPi);
-        setPiOcurrences(ocurrPi);
+        //obtengo las keys de constantes
+        const constKeys = Object.keys(constantes);
 
-        const [displayE, posE, ocurrE] = await buscarInfoDe(event.target.value, "e");
-        setEPosition(posE);
-        setEDisplay(displayE);
-        setEOcurrences(ocurrE);
+        const newConstants = {};
+        for (const constante of constKeys) {
+            const [display, position, ocurrences] = await buscarInfoDe(event.target.value, constante);
+            newConstants[constante] = { display, position, ocurrences };
+        }
 
-        const [displayPhi, posPhi, ocurrPhi] = await buscarInfoDe(event.target.value, "phi");
-        setPhiPosition(posPhi);
-        setPhiDisplay(displayPhi);
-        setPhiOcurrences(ocurrPhi);
+        setConstants(newConstants);
     };
 
     return (
@@ -124,33 +134,16 @@ const FindDigits = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="text-center pb-2 text-2xl">{constantes["pi"].label}</td>
-                            {
-                                piDisplay[0] === null ? <td className="text-center pb-2 text-2xl">-</td> :
-                                    <td className="text-center pb-2 text-2xl">{piDisplay[0]}<span className="font-bold text-3xl">{digit}</span>{piDisplay[1]}</td>
-                            }
-                            <td className="text-center pb-2 text-2xl">{piPosition ?? "-"}</td>
-                            <td className="text-center pb-2 text-2xl">{piOcurrences}</td>
-                        </tr>
-                        <tr>
-                            <td className="text-center pb-2 font-bold-xl text-2xl">{constantes["e"].label}</td>
-                            {
-                                eDisplay[0] === null ? <td className="text-center pb-2 text-2xl">-</td> :
-                                    <td className="text-center pb-2 text-2xl">{eDisplay[0]}<span className="font-bold text-3xl">{digit}</span>{eDisplay[1]}</td>
-                            }
-                            <td className="text-center pb-2 text-2xl">{ePosition ?? "-"}</td>
-                            <td className="text-center pb-2 text-2xl">{eOcurrences}</td>
-                        </tr>
-                        <tr>
-                            <td className="text-center pb-2 font-bold-xl text-2xl">{constantes["phi"].label}</td>
-                            {
-                                phiDisplay[0] === null ? <td className="text-center pb-2 text-2xl">-</td> :
-                                    <td className="text-center pb-2 text-2xl">{phiDisplay[0]}<span className="font-bold text-3xl">{digit}</span>{phiDisplay[1]}</td>
-                            }
-                            <td className="text-center pb-2 text-2xl">{phiPosition ?? "-"}</td>
-                            <td className="text-center pb-2 text-2xl">{phiOcurrences}</td>
-                        </tr>
+                        {Object.entries(constantes).map(([key, value]) => (
+                            <TableItem
+                                key={key}
+                                value = {digit}
+                                label={value}
+                                display={constants[key].display}
+                                position={constants[key].position}
+                                ocurrences={constants[key].ocurrences}
+                            />
+                        ))}
                     </tbody>
                 </table>
             </div>
