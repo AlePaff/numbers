@@ -16,7 +16,7 @@ function obtenerError(plain_text, value_input) {
 function ClosedForms({ values_wolf, value_input, onSubpodData }) {
     let closedFormsSubpods = getSubpods(values_wolf, "PossibleClosedForm")
 
-    if (closedFormsSubpods.length === 0) { return (<></>) }
+    if (closedFormsSubpods?.length === 0) { return <></> }
 
     let closedFormsSubpodsImg = closedFormsSubpods.map(subpod => subpod.img);
     

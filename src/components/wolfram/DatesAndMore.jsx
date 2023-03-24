@@ -7,7 +7,7 @@ function DatesAndMore({ wolframe_output, input_value, onSubpodData }) {
     const timerSubpods = getSubpods(wolframe_output, "DifferenceConversions")
     const timerDifSubpods = getSubpods(wolframe_output, "TimeDifferenceFromNow (time)")
 
-    if (calendarSubpods.length === 0 && timerSubpods.length === 0 && timerDifSubpods.length === 0) return (null);
+    if (calendarSubpods.length === 0 && timerSubpods.length === 0 && timerDifSubpods.length === 0) return (<></>);
 
     // onSubpodData(true)
 

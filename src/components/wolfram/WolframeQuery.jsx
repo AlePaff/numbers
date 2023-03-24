@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import ParseWolframeQuery from './ParseWolframeQuery';
+import CheckWolframeQuery from './CheckWolframeQuery';
 
 const WolframeQuery = () => {
 
@@ -20,7 +20,7 @@ const WolframeQuery = () => {
 
     const data = await response.json();     //await se usa para esperar a que la promesa se resuelva
     
-    const resultados = <ParseWolframeQuery wolframe_output={data.queryresult} input_value={inputValue} />
+    const resultados = <CheckWolframeQuery wolframe_output={data.queryresult} input_value={inputValue} />
     return resultados;
   }, {
     enabled: false,
