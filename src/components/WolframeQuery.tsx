@@ -76,7 +76,7 @@ const WolframeQuery = () => {
 
         <button onClick={handleRandom}>
           <span
-            className={`mx-3 inline-block ${isAnimated ? 'animate-spin-with-bounce' : 'animate-none'}`}
+            className={`mx-3 inline-block ${isAnimated ? 'animate-double-spin' : 'animate-none'}`}
             role="img"
             aria-label="dice">🎲</span>
 

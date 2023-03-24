@@ -10,13 +10,12 @@ module.exports = {
         center: true,     //centrar el contenido por default
       },
       animation: {
-        'spin-with-bounce': 'spin-with-bounce 1s ease-in-out',
+        'double-spin': 'double-spin 0.5s ease-in-out',
       },
       keyframes: {
-        'spin-with-bounce': {
-          '0%, 100%': { transform: 'rotate(0deg)' },
-          '50%': { transform: 'rotate(720deg)' },
-          '90%': { transform: 'rotate(-50deg)' },
+        'double-spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(720deg)' },
         },
       },
     },
