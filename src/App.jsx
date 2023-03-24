@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from "react-query/devtools";
-import NumberQuery from './components/NumberQuery';
+import Switch from './components/Switch';
 
 
 function App() {
@@ -28,7 +28,7 @@ function FindANumber() {
       </div>
       <p className="text-center text-gray-500 my-2">For example try for the decimal "16.09" or the integer "444" or the date "1/2/1888"</p>
 
-      <NumberQuery></NumberQuery>
+      <Switch></Switch>
     </>
   );
 }

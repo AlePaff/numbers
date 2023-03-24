@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import TableDigitsItem from "./TableDigitsItem";
+import TableDigits from "./TableDigits";
 
 //imprimir por pantalla la posición y 4 digitos antes y despues
 //con verificaciones si llegó al principio o al final del numero
@@ -59,26 +60,8 @@ async function buscarInfoDe(search, constName) {
 
 }
 
-function TableItem({ value, label, display, position, ocurrences }) {
-    return (
-      <tr>
-        <td className="text-center pb-2 font-bold-xl text-2xl">{label}</td>
-        
-        {display[0] === null ? (
-          <td className="text-center pb-2 text-2xl">-</td>
-        ) : (
-          <td className="text-center pb-2 text-2xl">
-            {display[0]}
-            <span className="font-bold text-3xl">{value}</span>
-            {display[1]}
-          </td>
-        )}
-        
-        <td className="text-center pb-2 text-2xl">{position ?? "-"}</td>
-        <td className="text-center pb-2 text-2xl">{ocurrences}</td>
-      </tr>
-    );
-  }
+
+
 
 
 
@@ -100,7 +83,7 @@ const FindDigits = () => {
     const handleDigitChange = async (event) => {
         setDigit(event.target.value);
 
-        //obtengo las keys de constantes
+        //obtengo las keys del dic. "constantes" (key:value)
         const constKeys = Object.keys(constantes);
 
         const newConstants = {};
@@ -123,34 +106,20 @@ const FindDigits = () => {
                     onChange={handleDigitChange}
                 />
             </div>
-            <div className="flex sm:justify-center overflow-auto">
-                <table className="table-auto border-2 border-[#e6decd]">
-                    <thead>
-                        <tr className="bg-[#f1ede3]">
-                            <th className="sm:px-4 sm:py-2 border border-[#e6decd]">Number</th>
-                            <th className="sm:px-4 sm:py-2 border border-[#e6decd]">Pattern input</th>
-                            <th className="sm:px-4 sm:py-2 border border-[#e6decd]">At Position</th>
-                            <th className="sm:px-4 sm:py-2 border border-[#e6decd]">Ocurrences (in the first 1 millon digits)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {Object.entries(constantes).map(([key, value]) => (
-                            <TableItem
-                                key={key}
-                                value = {digit}
-                                label={value}
-                                display={constants[key].display}
-                                position={constants[key].position}
-                                ocurrences={constants[key].ocurrences}
-                            />
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            <TableDigits>
+                {Object.entries(constantes).map(([key, value]) => (
+                    <TableDigitsItem
+                        key={key}
+                        value={digit}
+                        label={value}
+                        display={constants[key].display}
+                        position={constants[key].position}
+                        ocurrences={constants[key].ocurrences}
+                    />
+                ))}
+            </TableDigits>
         </div>
     );
 };
-
-
 
 export default FindDigits

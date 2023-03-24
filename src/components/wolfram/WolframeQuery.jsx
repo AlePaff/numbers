@@ -5,7 +5,7 @@ import ParseWolframeQuery from './ParseWolframeQuery';
 const WolframeQuery = () => {
 
   const more_closed_forms = "&podstate=PossibleClosedForm__More"
-  const images = "&format=image"    //sin necesidad de latex ni nada
+  // const images = "&format=image"    //sin necesidad de latex ni nada
   const api_id = "XLPLQ9-WVTJ4GL8WU"
   const roman = "&podstate=RomanNumerals__Other+historical+numerals"
   const formatos = "&podstate=SingleDateFormats__More+formats/calendars"
@@ -26,6 +26,7 @@ const WolframeQuery = () => {
     enabled: false,
   });
 
+  
   //para permitir que el usuario presione enter
   const onFormSubmit = (event) => { event.preventDefault(); }
   const handleChange = (event) => { setInputValue(event.target.value) };
@@ -93,10 +94,7 @@ const WolframeQuery = () => {
           </div>
         </div>}
         {query.isSuccess && !(query.isLoading || query.isFetching) && <div>{query.data}</div>}
-
-        {
-          query.isError && <div>Error: {query.error.message}</div>}
-
+        {query.isError && <div>Error: {query.error.message}</div>}
       </div>
     </div>
   )

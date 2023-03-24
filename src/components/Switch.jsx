@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import WolframeQuery from './WolframeQuery';
-import FindDigits from './FindDigits';
+import WolframeQuery from './wolfram/WolframeQuery';
+import FindDigits from './digits/FindDigits';
 
 
-function NumberQuery() {
+function Switch() {
   const [switchState, setSwitchState] = useState(true)
   const handleSwitch = () => {
     setSwitchState(!switchState)
@@ -32,4 +32,4 @@ function NumberQuery() {
   );
 }
 
-export default NumberQuery;
+export default Switch;
