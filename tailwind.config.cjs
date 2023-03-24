@@ -10,7 +10,7 @@ module.exports = {
         center: true,     //centrar el contenido por default
       },
       animation: {
-        'double-spin': 'double-spin 0.5s ease-in-out',
+        'double-spin': 'double-spin 0.4s ease-in-out',
       },
       keyframes: {
         'double-spin': {

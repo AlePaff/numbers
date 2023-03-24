@@ -44,7 +44,9 @@ function Properties({ wolframe_output, input_value, onSubpodData }) {
     function raizDigital(numero_entero) {
         const numero_str = numero_entero.toString();
         
-        if (!(Number as any).isInteger(numero_entero)) return (null);      //si no es entero
+        //devolver false si no es entero
+        if (!Number.isInteger(numero_entero)) return (null);
+        // if (!isInteger(numero_entero)) return (null);      //si no es entero
 
         if (numero_str.length === 1) {          //si es un solo digito
             return numero_str;

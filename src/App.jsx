@@ -1,4 +1,3 @@
-
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from "react-query/devtools";
 import NumberQuery from './components/NumberQuery';
