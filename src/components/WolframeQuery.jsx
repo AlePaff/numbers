@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import ParseQuery from './ParseQuery';
+import ParseWolframeQuery from './ParseWolframeQuery';
 
 const WolframeQuery = () => {
 
@@ -19,8 +19,8 @@ const WolframeQuery = () => {
     const response = await fetch(ownProxyUrl + api);
 
     const data = await response.json();     //await se usa para esperar a que la promesa se resuelva
-
-    const resultados = <ParseQuery wolframe_output={data.queryresult} input_value={inputValue} />
+    
+    const resultados = <ParseWolframeQuery wolframe_output={data.queryresult} input_value={inputValue} />
     return resultados;
   }, {
     enabled: false,
@@ -80,8 +80,6 @@ const WolframeQuery = () => {
             role="img"
             aria-label="dice">🎲</span>
 
-          {/* <span className='mx-3' role="img" aria-label="dice">🎲</span> */}
-
         </button>
       </form>
       <div>
@@ -97,7 +95,6 @@ const WolframeQuery = () => {
         {query.isSuccess && !(query.isLoading || query.isFetching) && <div>{query.data}</div>}
 
         {
-          // @ts-ignore
           query.isError && <div>Error: {query.error.message}</div>}
 
       </div>

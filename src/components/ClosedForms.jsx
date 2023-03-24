@@ -25,11 +25,9 @@ function ClosedForms({ values_wolf, value_input, onSubpodData }) {
     if (closedFormsSubpods.length === 0) { return (<></>) }
 
     let closedFormsSubpodsImg = closedFormsSubpods.map(subpod => subpod.img);
-
+    
     const closedFormsSubpodsInfo = closedFormsSubpods.map(subpod => subpod.infos)
-        //elimina los undefined
-        .filter(info => info !== undefined).flatMap(info => info)
-
+    .filter(info => info !== undefined).flatMap(info => info)       //elimina los undefined
 
     const [showErrors, setShowErrors] = useState(false);
 
@@ -56,9 +54,10 @@ function ClosedForms({ values_wolf, value_input, onSubpodData }) {
                 {/* info y links */}
                 <div className="justify-self-end ">
                     {closedFormsSubpodsInfo.map(info => {
-                        if ('links' in info && info.links.length >= 2) {
+                        let value_links = info.links?.url || info.links?.filter(link => link.text === "Definition")[0].url;
+                        if ('links' in info && value_links !== undefined) {
                             return (
-                                <a href={info.links[1].url} target="_blank" key={info.img?.alt}>
+                                <a href={value_links} target="_blank" key={info.img?.alt}>
                                     <img className="my-2 cursor-pointer" src={info.img.src} alt={info.img.alt} title="Click the image for more info" />
                                 </a>
                             );

@@ -103,7 +103,7 @@ function DatesAndMore({ wolframe_output, input_value, onSubpodData }) {
 }
 
 
-function ParseQuery({ wolframe_output, input_value }) {
+function ParseWolframeQuery({ wolframe_output, input_value }) {
     const [dataFound, setDataFound] = useState(false)
 
     const onSubpodData = (hasData) => {
@@ -125,4 +125,4 @@ function ParseQuery({ wolframe_output, input_value }) {
     )
 }
 
-export default ParseQuery;
+export default ParseWolframeQuery;
