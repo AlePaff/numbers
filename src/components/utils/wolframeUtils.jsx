@@ -8,8 +8,8 @@ const getSubpods = (wolframe_query, pod_id) => {
 }
 
 // se fija si el subpod tiene un img, si no lo tiene, no lo muestra
-const checkSubpods = (name, subpod_array) => {
-    if (subpod_array.length === 0) return
+const checkSubpods = ( name, subpod_array ) => {
+    if (subpod_array.length === 0) return null
     subpod_array = subpod_array.map(subpod => subpod.img);
 
     return (
