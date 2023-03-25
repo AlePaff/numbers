@@ -1,36 +1,43 @@
 import { getSubpods, checkSubpods } from '../utils/wolframeUtils'
 
 
-//por ejemplo 4356 -> 4 + 3 + 5 + 8 = 20 -> 2 + 0 = 2
 function raizDigital(numero_entero) {
-    const numero_str = numero_entero.toString();
-    
-    //devolver false si no es entero
-    if (!Number.isInteger(numero_entero)) return (null);
-    // if (!isInteger(numero_entero)) return (null);      //si no es entero
+    let numero_str = numero_entero.toString();
 
-    if (numero_str.length === 1) {          //si es un solo digito
-        return numero_str;
+    //devolver null si no es entero
+    if (/^\d+$/.test(numero_str) === false) return null;
+
+    let suma_digitos = 0;
+    let arraySumasParciales = [];
+    arraySumasParciales.push(numero_str);
+
+    while (numero_str.length > 1) {
+        suma_digitos = 0;
+
+        for (let i = 0; i < numero_str.length; i++) {
+            suma_digitos += parseInt(numero_str[i]);
+        }
+
+        arraySumasParciales.push(suma_digitos);
+        numero_str = suma_digitos.toString();
     }
-    const suma_digitos = numero_str.split('').reduce((a, b) => parseInt(a) + parseInt(b));
-    // console.log(suma_digitos)
-    return raizDigital(suma_digitos);
+    // arraySumasParciales = arraySumasParciales.map(num => num.toString());
+    return arraySumasParciales;
 }
 
 
 
-function Properties({ wolframe_output, input_value, onSubpodData }) {
-    const numero = parseFloat(input_value)
 
+
+function Properties({ wolframe_output, input_value, onSubpodData }) {
     const propsSubpods = getSubpods(wolframe_output, "Property")
     const primesSubpods = getSubpods(wolframe_output, "PrimeFactorization")
     const comparitionSubpods = getSubpods(wolframe_output, "Comparison")
     const formatosSubpods = getSubpods(wolframe_output, "RomanNumerals")
-    const raizDigitalResult = raizDigital(numero)
+    const raizDigitalResult = raizDigital(input_value)
 
-    if (propsSubpods.length === 0 && primesSubpods.length === 0 && comparitionSubpods.length === 0 && formatosSubpods.length === 0 && raizDigitalResult==null) return (<></>);
-
-    // onSubpodData(true)
+    if (propsSubpods?.length === 0 && primesSubpods?.length === 0 && comparitionSubpods?.length === 0 && formatosSubpods?.length === 0 && raizDigitalResult == null) return (null);
+    if (propsSubpods === undefined && primesSubpods === undefined && comparitionSubpods === undefined && formatosSubpods === undefined) return (null);
 
     return (
         <>
@@ -40,7 +47,8 @@ function Properties({ wolframe_output, input_value, onSubpodData }) {
             {checkSubpods("Writen as other numerals", formatosSubpods)}
             <div className="border-2 my-1 px-3 py-1 rounded-md bg-white">
                 <h2>Digital Root</h2>
-                <p className="ml-10">The digital root of {numero} is {raizDigitalResult}</p>
+                <p className="ml-10">The digital root of {input_value} is {raizDigitalResult[raizDigitalResult.length - 1]}
+                <span className="text-gray-400"> (because {raizDigitalResult.join(" ➜ ")})</span></p>
             </div>
 
         </>
