@@ -64,14 +64,14 @@ const WolframeQuery = () => {
       <form className="flex flex-no-wrap items-center sm:w-3/4 mx-auto" onSubmit={onFormSubmit}>
         <input
           type="text"
-          className="flex-grow border-2 rounded-l-md p-2 my-5 border-[#e6decd] focus:outline-none focus:ring-2 focus:ring-[#e5cf9b] focus:border-transparent placeholder:italic placeholder:text-slate-400"
+          className="flex-grow border-2 rounded-l-md p-2 my-5 border-arena-7 focus:outline-none focus:ring-2 focus:ring-arena-1 focus:border-transparent placeholder:italic placeholder:text-slate-400"
           placeholder="Write a number (eg. 16.09)"
           value={inputValue}
           onChange={handleChange}
         />
         <button
           type='submit'
-          className="flex-shrink-0 bg-[#e5cf9b] text-white hover:bg-[#e6c986] rounded-r-md px-3 h-12"
+          className="flex-shrink-0 bg-arena-1 text-white hover:bg-arena-2 rounded-r-md px-3 h-12"
           onClick={handleClick}
         >=</button>
 

@@ -7,7 +7,7 @@ function App() {
   return (
     // para permitir usar el hook useQuery globalmente (en cualquier componente)
     <QueryClientProvider client={new QueryClient()}>
-      <div className="max-w-screen-lg mx-auto p-1 bg-[#f6f3ed] pb-36">
+      <div className="max-w-screen-lg mx-auto p-1 bg-arena-8 pb-36">
         <FindANumber />
       </div>
       {/* <ReactQueryDevtools /> */}
@@ -21,7 +21,7 @@ function FindANumber() {
 
   return (
     <>
-      <div className="sm:container sm:mx-auto sm:mt-5 sm:rounded px-2 pb-4 bg-[#f1ede3] text-gray-600 ">
+      <div className="sm:container sm:mx-auto sm:mt-5 sm:rounded px-2 pb-4 bg-arena-3 text-gray-600 ">
         <h1 className="text-3xl font-bold underline text-center py-4">Find a number</h1>
         <p className="text-center">Find a pattern in a number you like, or when its used or expresion similars to it</p>
         <p className="text-center">you can input a integer, a decimal or even a date to get interest information about it</p>
