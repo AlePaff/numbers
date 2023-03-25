@@ -5,11 +5,10 @@ import { obtenerError } from "../utils/obtenerError"
 
 function ClosedForms({ values_wolf, value_input, onSubpodData }) {
     let closedFormsSubpods = getSubpods(values_wolf, "PossibleClosedForm")
-
-    if (closedFormsSubpods?.length === 0) { return <></> }
+    
+    if (closedFormsSubpods?.length === 0 || closedFormsSubpods === undefined) return null
 
     let closedFormsSubpodsImg = closedFormsSubpods.map(subpod => subpod.img);
-    
     const closedFormsSubpodsInfo = closedFormsSubpods.map(subpod => subpod.infos)
     .filter(info => info !== undefined).flatMap(info => info)       //elimina los undefined
 

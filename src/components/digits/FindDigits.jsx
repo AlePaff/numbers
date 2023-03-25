@@ -100,7 +100,7 @@ const FindDigits = () => {
             <div className="flex justify-center">
                 <input
                     type="number"
-                    className="border-2 rounded-md p-2 my-5 focus:outline-none focus:ring-2 focus:ring-[#e5cf9b] border-[#e6decd] focus:border-transparent placeholder:italic placeholder:text-slate-400"
+                    className="border-2 rounded-md p-2 my-5 focus:outline-none focus:ring-2 focus:ring-arena-1 border-arena-7 focus:border-transparent placeholder:italic placeholder:text-slate-400"
                     placeholder="Write some digits"
                     value={digit}
                     onChange={handleDigitChange}
