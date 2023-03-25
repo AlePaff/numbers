@@ -1,4 +1,11 @@
-
+const InfoButtonLink = ({ link }) => {
+    // considerar agregarle un tooltip con un "what is this?"
+    return (
+        <button className="text-white px-2 rounded-md mx-2 bg-arena-1 hover:bg-arena-2 font-bold">
+            <a href={link} target="_blank" rel="noreferrer">?</a>
+        </button>
+    )
+}
 
 //no hace falta el chequeo de si es entero, decimal o fecha, ya que filter
 //si no lo encuentra devuelve un array vacío, y map y flatMap sobre un array vacío no generan problemas
@@ -7,11 +14,6 @@ const getSubpods = (wolframe_query, pod_id) => {
     return result
 }
 
-const InfoButtonLink = () => {
-    return (
-        <button className="text-white px-2 rounded-md mx-2 bg-arena-1 hover:bg-arena-2">?</button>
-    )
-}
 
 // se fija si el subpod tiene un img, si no lo tiene, no lo muestra
 const checkSubpods = (name, subpod_array) => {
@@ -23,7 +25,7 @@ const checkSubpods = (name, subpod_array) => {
             <div className="border-2 my-1 px-3 py-1 rounded-md bg-white">
                 <div className="flex">
                     {name}
-                    <InfoButtonLink></InfoButtonLink>
+                    {/* <InfoButtonLink></InfoButtonLink> */}
                 </div>
                 <div className="ml-10">
                     {subpod_array.map(image =>
@@ -39,4 +41,4 @@ const checkSubpods = (name, subpod_array) => {
 }
 
 
-export { getSubpods, checkSubpods } 
+export { getSubpods, checkSubpods, InfoButtonLink } 
