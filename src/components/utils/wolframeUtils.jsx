@@ -7,15 +7,24 @@ const getSubpods = (wolframe_query, pod_id) => {
     return result
 }
 
+const InfoButtonLink = () => {
+    return (
+        <button className="text-white px-2 rounded-md mx-2 bg-arena-1 hover:bg-arena-2">?</button>
+    )
+}
+
 // se fija si el subpod tiene un img, si no lo tiene, no lo muestra
-const checkSubpods = ( name, subpod_array ) => {
+const checkSubpods = (name, subpod_array) => {
     if (subpod_array.length === 0) return null
     subpod_array = subpod_array.map(subpod => subpod.img);
 
     return (
         <>
             <div className="border-2 my-1 px-3 py-1 rounded-md bg-white">
-                <li>{name}</li>
+                <div className="flex">
+                    {name}
+                    <InfoButtonLink></InfoButtonLink>
+                </div>
                 <div className="ml-10">
                     {subpod_array.map(image =>
                         <div className="flex" key={image.src + image.alt}>
